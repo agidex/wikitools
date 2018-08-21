@@ -1,4 +1,4 @@
-import os
+﻿import os
 import re
 from pprint import pprint
 
@@ -40,7 +40,9 @@ def parse_book(file_name):
 
         isbn_line = book_dict.get('ISBN')
         if (isbn_line):
-            book_dict['ISBN'] = isbn_line.split(', ')[0]
+            book_dict['ISBN'] = max(isbn_line.split(', '),
+                                    key=lambda item: len(item)
+                                    )
 
         book_dict['Год'] = book_dict['Издатель'].split(', ')[-1]
         book_dict['Издатель'] = ', '.join(book_dict['Издатель'].split(', ')[:-1])
@@ -49,26 +51,26 @@ def parse_book(file_name):
 
     tpl_text = '''{{книга
  | автор         = %s
- | часть         =
- | ссылка часть  =
+ | часть         = 
+ | ссылка часть  = 
  | заглавие      = %s
- | оригинал      =
- | ссылка        =
- | викитека      =
- | ответственный =
+ | оригинал      = 
+ | ссылка        = 
+ | викитека      = 
+ | ответственный = 
  | издание       = %s
- | место         =
+ | место         = 
  | издательство  = %s
  | год           = %s
- | том           =
- | страницы      =
- | столбцы       =
+ | том           = 
+ | страницы      = 
+ | столбцы       = 
  | страниц       = %s
- | серия         =
+ | серия         = 
  | isbn          = %s
- | doi           =
- | тираж         =
- | ref           =
+ | doi           = 
+ | тираж         = 
+ | ref           = 
 }}'''
     if 'Автор' in book_dict.keys():
         author = book_dict.get('Автор')

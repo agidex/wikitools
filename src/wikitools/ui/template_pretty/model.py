@@ -9,5 +9,7 @@ class TemplatePrettyModel(object):
 
     def transmute(self):
         txt = self.view.get_text()
+        self.view.clear_text()
         self.view.add_text(tpl_pretty2(txt))
+        # self.view.select_out_text()
         print('TRANSMUTE DONE')

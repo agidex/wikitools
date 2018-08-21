@@ -24,5 +24,6 @@ class BookParseModel(object):
                 self.view.add_text('\n')
 
     def parse(self):
+        self.view.clear_text()
         self.__readdir()
         print('PARSE DONE')

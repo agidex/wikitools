@@ -55,3 +55,9 @@ class TemplatePrettyView(PageView):
 
     def add_text(self, text):
         self.text['out'].insert(tkinter.END, text)
+
+    def clear_text(self):
+        self.text['out'].delete('1.0', tkinter.END)
+
+    # def select_out_text(self):
+    #     self.text['out'].tag_add('sel', '1.0', 'end')

@@ -41,3 +41,6 @@ class BookParseView(PageView):
 
     def add_text(self, text):
         self.text['out'].insert(tkinter.END, text)
+
+    def clear_text(self):
+        self.text['out'].delete('1.0', tkinter.END)

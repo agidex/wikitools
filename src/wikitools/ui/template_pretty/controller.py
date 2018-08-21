@@ -27,6 +27,8 @@ class TemplatePrettyController(object):
 
     def bind_handlers(self):
         self.view.buttons['transmute'].bind("<Button-1>", self.transmute)
+        # binding modified event
+        self.view.text['in'].bind("<<Modified>>", self.transmute)
 
     def transmute(self, event):
         self.model.transmute()
