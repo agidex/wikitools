@@ -26,10 +26,23 @@ class BookParseController(object):
         self.view.close()
 
     def bind_handlers(self):
-        self.view.buttons['parse'].bind("<Button-1>", self.parse)
+        self.view.buttons['read'].bind("<Button-1>", self.read_books)
+        self.view.buttons['parse_all'].bind("<Button-1>", self.parse_all)
+        self.view.buttons['parse_sel'].bind("<Button-1>", self.parse_sel)
 
-    def parse(self, event):
-        self.model.parse()
+        self.view.treeviews['books'].bind("<<TreeviewSelect>>", self.book_select)
+
+    def read_books(self, event):
+        self.model.read_books()
+
+    def parse_sel(self, event):
+        self.model.parse_selected()
+
+    def parse_all(self, event):
+        self.model.parse_all()
+
+    def book_select(self, event):
+        self.model.parse_selected()
 
 
 
