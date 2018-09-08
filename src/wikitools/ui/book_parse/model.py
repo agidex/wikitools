@@ -37,7 +37,11 @@ class BookParseModel(object):
         print('PARSE DONE')
 
     def parse_selected(self):
+        self.view.clear_text()
         items = self.view.treeviews['books'].selection()
         for item in items:
-            n = int('0x' + str(item)[1:], 0)
+            n = int('0x' + str(item)[1:], 0)-1
             print(n)
+            txt = self.book_parser.format_book(self.book_parser.book_list()[n])
+            self.view.add_text(txt)
+

@@ -7,6 +7,42 @@ from pprint import pprint
 SAVE_PATH = 'Downloads'
 ENDS_HTML = 'Google Книги.html'
 
+TPL_BOOK2 = '''{{книга
+| автор         = %s
+| часть         =
+| ссылка часть  =
+| заглавие      = %s
+| оригинал      =
+| ссылка        =
+| викитека      =
+| ответственный =
+| издание       = %s
+| место         =
+| издательство  = %s
+| год           = %s
+| том           =
+| страницы      =
+| столбцы       =
+| страниц       = %s
+| серия         =
+| isbn          = %s
+| doi           =
+| тираж         =
+| ref           =
+}}'''
+
+TPL_BOOK = '''{{книга
+| автор         = %s
+| заглавие      = %s
+| ссылка        =
+| издание       = %s
+| издательство  = %s
+| год           = %s
+| страниц       = %s
+| isbn          = %s
+| ref           =
+}}'''
+
 
 class BookParser(object):
     __book_list = None
@@ -77,7 +113,19 @@ class BookParser(object):
         return self.__book_list
 
     def __format_book(self, book_dict):
-        pass
+        if 'Автор' in book_dict.keys():
+            author = book_dict.get('Автор')
+        else:
+            author = book_dict.get('Авторы')
+
+        return TPL_BOOK % (author,
+                           book_dict.get('Название'),
+                           book_dict.get('Издание:'),
+                           book_dict.get('Издатель'),
+                           book_dict.get('Год'),
+                           book_dict.get('Количество страниц'),
+                           book_dict.get('ISBN')
+                           )
 
     def __format_publish(self, book_dict):
         pass
